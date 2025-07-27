@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>sEnTImoS Q zoMoS LiVVRes, N0?</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Courier New', monospace;
+      background: #0d0d0d;
+      background-image:
+      linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
+      url("foto-principal.jpg"); /* fondo inicial */
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      color: #cfcfcf;
+      animation: moveBackground 30s linear infinite, zoomBackground 20s ease-in-out infinite alternate;
+}
+
+@keyframes moveBackground {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 1000px 1000px;
+  }
+}
+
+@keyframes zoomBackground {
+  from {
+    background-size: 100%;
+  }
+  to {
+    background-size: 105%;
+  }
+}
+    }
+/* Fondos para cada sección */
+body.presentacion {
+  background-image:
+    linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
+    url("fondo-identidad.jpg");
+}
+
+body.reflexiones {
+  background-image:
+    linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
+    url("fondo.jpg");
+}
+
+body.muerte {
+  background-image:
+    linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
+    url("fondo-muerte.jpg");
+}
+
+body.amistades {
+  background-image:
+    linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
+    url("fondo-vinculos.jpg");
+}
+
+
+    /* Pantalla inicial */
+    #loading-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: black;
+      color: #00ffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      z-index: 9999;
+      animation: fadeOut 2s ease 2s forwards;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      border-bottom: 1px dashed #ff00ff;
+    }
+
+    h1 {
+      color: #ff00ff;
+      font-size: 36px;
+      text-shadow: 1px 1px 3px #000, 0 0 5px #ff00ff;
+    }
+
+    nav {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    nav a {
+      display: inline-block;
+      margin: 8px;
+      padding: 8px 20px;
+      color: #00ffff;
+      border: 1px solid #00ffff;
+      text-decoration: none;
+      border-radius: 6px;
+      background-color: rgba(0, 0, 0, 0.3);
+      transition: 0.2s;
+      position: relative;
+    }
+
+    nav a:hover {
+      background-color: #00ffff;
+      color: black;
+      filter: drop-shadow(0 0 5px #00ffff);
+    }
+
+    nav a:hover::after {
+      content: '';
+      position: absolute;
+      top: -2px; left: -2px;
+      right: -2px; bottom: -2px;
+      border: 1px dashed hotpink;
+      animation: glitch 0.3s infinite;
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(1px, -1px); }
+      50% { transform: translate(-1px, 1px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    section {
+      display: none;
+      max-width: 800px;
+      margin: 40px auto;
+      background-color: rgba(20, 20, 20, 0.85);
+      padding: 30px;
+      border: 1px solid #444;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
+    }
+
+    section.active {
+      display: block;
+    }
+
+    h2 {
+      color: #00ffff;
+      text-shadow: 1px 1px 2px #000;
+      transition: 0.3s;
+    }
+
+    h2:hover {
+      text-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff;
+      transform: scale(1.02);
+    }
+
+    .entry {
+      border-left: 3px solid #ff00ff;
+      padding-left: 15px;
+      margin-bottom: 20px;
+      background-color: rgba(255, 0, 255, 0.05);
+    }
+
+    .entry-date {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 5px;
+    }
+
+    .friend-photo {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border: 2px solid #ff00ff;
+      border-radius: 8px;
+      margin: 5px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      margin-top: 40px;
+      padding: 20px;
+    }
+#comentarios {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #ff00ff;
+  padding: 20px;
+  margin: 40px auto;
+  max-width: 800px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px #00ffff88;
+  color: #cfcfcf;
+}
+
+#comentarios h2 {
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  color: #ff00ff;
+  margin-bottom: 10px;
+}
+
+iframe[src*="cusdis.com"] {
+  width: 100%;
+  min-height: 400px;
+  border: none;
+}
+
+.vinculo-card img {
+  width: 100%;
+  max-width: 180px;  /* Tamaño máximo */
+  height: auto;       /* Mantiene proporción */
+  border-radius: 10px; /* Bordes redondeados */
+  margin-bottom: 10px;
+  border: 2px solid #ff00ff;
+  object-fit: cover; 
+
+.comentarios-intro {
+  max-width: 800px;
+  margin: 40px auto 20px auto;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #ff00ff;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 10px #00ffff66;
+}
+
+.comentarios-intro h2 {
+  color: #ff00ff;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 6px #00ffff;
+  margin-bottom: 10px;
+}
+
+.comentarios-intro p {
+  color: #ccc;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+.glitch-title {
+  position: relative;
+  display: inline-block;
+  font-size: 1.5rem;
+  color: #ff00ff;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 5px #00ffff;
+  cursor: default;
+}
+
+.glitch-title::before,
+.glitch-title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #ff00ff;
+  background: transparent;
+  clip: rect(0, 0, 0, 0);
+}
+
+.glitch-title:hover::before {
+  animation: glitch 0.8s infinite linear alternate-reverse;
+}
+
+.glitch-title:hover::after {
+  animation: glitch 0.8s infinite linear alternate-reverse;
+  color: #00ffff;
+}
+
+@keyframes glitch {
+  0% { clip: rect(0, 9999px, 0, 0); transform: skew(0.5deg); }
+  5% { clip: rect(0, 9999px, 0, 0); transform: skew(0.5deg); }
+  10% { clip: rect(5px, 9999px, 15px, 0); transform: skew(-0.5deg); }
+  15% { clip: rect(0, 9999px, 0, 0); transform: skew(0.5deg); }
+  20% { clip: rect(10px, 9999px, 20px, 0); transform: skew(-0.5deg); }
+  25% { clip: rect(0, 9999px, 0, 0); transform: skew(0.5deg); }
+  30% { clip: rect(15px, 9999px, 25px, 0); transform: skew(-0.5deg); }
+  35% { clip: rect(0, 9999px, 0, 0); transform: skew(0.5deg); }
+  40% { clip: rect(20px, 9999px, 30px, 0); transform: skew(-0.5deg); }
+  100% { clip: rect(0, 9999px, 0, 0); transform: skew(0.5deg); }
+}
+
+
+
+  </style>
+</head>
+<body>
+<!-- Reproductor minimalista -->
+<audio id="bg-music" src="cancion-fondo.mp3" loop autoplay></audio>
+
+<div id="music-controls">
+  <button onclick="toggleMusic()">⏯️ Música</button>
+</div>
+
+<style>
+  #music-controls {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #ff00ff;
+    border-radius: 8px;
+    padding: 5px 10px;
+    z-index: 1000;
+  }
+  #music-controls button {
+    background: none;
+    border: none;
+    color: #00ffff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  #music-controls button:hover {
+    color: #ff00ff;
+    text-shadow: 0 0 5px #ff00ff;
+  }
+</style>
+
+<script>
+  const music = document.getElementById('bg-music');
+  function toggleMusic() {
+    if (music.paused) {
+      music.play();
+    } else {
+      music.pause();
+    }
+  }
+</script>
+
+  <div id="loading-screen">
+    C4RgAbnDO o:p...
+  </div>
+
+  <header>
+    <h1>// HOLA BBIENEVDENIDOOO  //</h1>
+    <p>Escribo para sobrevivir. Aquí comparto lo que me quema la cabeza y me abraza el alma. A veces siento que todo va muy rápido para lo que yo quiero sentir. Pero escribir hace sentir que tengo control, algo q siempre busco....</p>
+  </header>
+
+  <nav>
+    <a href="#presentacion">[ PenS4m1ennTos ]</a>
+    <a href="#reflexiones">[ IdEnt1d44AD ]</a>
+    <a href="#muerte">[ iNEviTTAblE mu#Rt3]</a>
+    <a href="#amistades">[ VinculoOSs <3 ]</a>
+  </nav>
+
+  <section id="presentacion" class="active">
+    <h2>PenS4m1ennTos</h2>
+    <p> PuTO EL 	Uqeu lo lea
+         si contara las veces que me han dicho, ¿que haras con tu vida?, serian CERO por que prefieren preguntarme en que piensas trabajar como si eso definiera mi vida y he sentido que no puedo tomar decisiones propias que no soy libre. No importa donde volteo solo hay sistemas y jerarquías, seres humanos con mentalidad en masa, pero estoy segura que no soy la unica que se cuestiona o que piensa de manera bien pinche existencial
+ ¿COMO SER LIBRE EN UN MUNDO QUE YA ESTA DISEÑADO?
+Algo en mí quiere arder sin permiso. A veces me gustaria no tener tanta concienia de las cosas, no mentirme a mi misma de que se a donde ir, por que la verdad es que nadie sabe a donde va por que seamos honestos es mas f4cILl seguir a los demas que detenerte y conocerte a ti.
+A veces estoy haciendo cualquier mierda como estar en la combi pienso en la inevitable muerte de todo, de nosotros mismos, del planeta que pisamos, del univero en donde existimos veo la cara de toda la gente y me pregunto para que despiertan cada mañana ¿Por amor a la vida o por amor al dinero? Por que vivimos en la epoca donde el dinero ya no se volvio una herramienta si no una necesidad y obsesión pero como no serlo por que eso ahora define que tan importante eres, que tan productivo eres, cuanto ""valor"" tienes como persona, trae comida a tu casa, piensas que con eso seras feliz. Pero ponte a pensar hijo de la verga el dinero realmente no tiene valor, tu le das el valor... y te consume. Te consume la idea de querer todo, vez que para encajar ocupas ese metalito, quieres comprar pendejadas con la idea de que los necesitas. Somos demasiado consumidores pero en el proceso te matas a ti y matas tu entorno. PERO todos pensamos si no tienes recursos financieros no podras sobrevivir y si tuviera hijos me viera mas obligada. Lo culero es que con esta nueva tecnologia nuestra guerra es espiritual en el sentido que estamos olvidando quienes somos, nos tienen como zombies, no estamos muertos pero tampoco estamos viviendo, tu crees que eres libre por que no tienes cadenas, somos obejas sin sentido por que tambien esta cabron """ser tu mismo""" . Por que a veces las mismas obejas que son parte de tu organismo, te juzgan pero tampoco es su culpa ellas piensan que hacen lo correcto pero no saben que esas ideas no son suyas. Por eso yo admiro a la gente rebelde, que antes de juzgar prefiere comprender, a la gente que se viste todo che loco e incoherente por que yo cada que me visto en vez de sentirme bien conmigo pienso en que pensaran los demas.
+
+La inevitable muerte del todo, el solo pensar que cualquier tipo de vida no existira y literalmente nadie recordara NADA, no me genera ansiedad solo es sorprendente que el momento es ahora, vivimos en el mejor momento y no creo que nadie este conciente de la magnitud de lo agradecidos que deberiamos estar pero tambien me cuestiona, ¿Que necesidad tiene de hacer algo diferente como salir desnuda a la calle si en mil millones de años el sol sera tan ardiente que la vida en la tierrra sera imposible?
+Entre mas me cuestiono, entiendo que muchas cosas realmente no tienen ningun sentido, hasta la vida que me han vendido no tiene sentido y no es por que me quiero matar pero no se que sentido darle a mi existencia y se siente bien cañon</p>
+<h4> Somos el arte de las estrellas y por eso esperaria un proposito del mas alla pero la verdad es que no lo hay</h4>
+<p> Uno LE Da S3nTIdOOo </p>
+  </section>
+
+  <section id="reflexiones">
+    <h2>IdEnt1d44AD</h2>
+    <p> En estre proceso de existencialismo, llega el momento que me pregunto ¿quien soy?. Tanto que si te pones a pensar tu solito pues no te formas hay muchos factores que te hacen ser tu, que te hacen destacar a los demas, y es lo perro de nosotros los humanos cada quien vive cosas distintas, cada quien tuvo familias distintas, somos seres biologicamente similares, pero culturalmente diferente.
+Entonces ¿quien soy?, soy una persona que fue moldeada por personas, una comunidad, historias, anomalias y algo peculiar que se llama internet. Apenas el internet lo estoy usando de buena manera con conciencia para facilitar las cosas en mi entorno, aunque haya cosas extrañas en este mundo digital hay cosas muy asombrosas tenemos en nuestra manita la informacion a nuestra mano y es muy sorprendente POR ESO WOW ESTAMOS EN LA MEJOR ETAPA, pero luego surgieron redes sociales que solo te sobreestimulan, te lastiman psicologicamente y te hacen adicto al no querer perderte nada, luego las pantallas en vez de ser una gran herramienta se ha vuelto una mierda y creo que es muy poca gente que usa la gran informacion que tenemos a nuestro favor. Desde 2021 lamentablemente por querer "matar ese tiempo libre"" termine siendo manipulada por tiktok, creia que muchos de mis gustos eran propios, que yo tenia la razon y nada mas. Luego abri los ojos, me di cuenta que no era la unica pero aunque estes consiente y aun no lo dejas, sigues siendo manipulado(a) solo que piensas que eres libre. Esa estupida necesidad de encajar en algo ignorandote a ti mismo y lo que te ha formado para que seas unico prefieres seguir a los demas sin pensar un poquito.  Por que como dije esa ruta es mas facil o eso creemos.
+EStoi HARta de tiktok me siento orgullosa de ya no consumir esa mierda, por que que pedo a la verga estamos procupados por puras pendejadas lo culero de las redes es que te roban tiempo a las nuevas generaciones, mi generacion y a la anterior "los mas adultos responsables" pero todo esta diseñado para que te quedes ahi, te hacen sentir que tines que estar ahi para no quedar fuera y con esto siento que tengo que volver a conocerme, saber que es lo que realmente me pertenece por que llevo 4 años dandole un pesimo uso a internet . Un dia hay que ponernos a pensar o eso siempre lo pienso ¿tantos millones de años de evolucion humana? SOMOS PARTE DE LAS ESTRELLAS brilantes que vemos en las noches, somos tan perfectos biologicamente todo esto ¿¿¿ PArR4 qQuE?? para estar procupados que no hay tiempo, procupados en cosas que el dispositivo en tu mano quiere que lo estes, antes era el periodico, luego la television ahora las redes sociales pero yo ¿por que existo? creo que existo por las experiencias que me hacen sentir viva y contar mis experiencias me hace sentir viva, amo el cielo, amo los atardaceres, amo la noche en todos sus aspectos cuando hace viento, cuando hace frio, amo poder ver las estrellas, me encanta la musica me encanta sentirla como si pasara por mis venas, me gusta gritar, amo bailar, amo cuando me hacen reir de manera genuina, me siento viva cuando me escuchan, cuando sudo. Pero este sistemita me tiene pensando en pendejadas, pensando en estupideces creyendo que son necesarias para la vida como la universidad, trabajo por 30 años, luego reproducete pero no por el acto biologico si no por el acto cultural para que tus sucesores hagan la misma mierda que tu. Pero en situaciones muy graves imaginemos que la tierra se queda sin nada, sin sus recursos el dinero no va recuperarlo.
+Pero mi mami dice no te procupes, ocupate. Entoncces mi mama no soluciono nada solo me hizo sentir peor, me hizo sentir diminuta como yo podria ocuparme con estas madres que me procupan. Pero el cambio puede llegar cuando menos te lo esperas, una vez estaba quejandome con antonio de que por que la vida esta lleno de cambios o por que las personas cambian y el me dijo que esta mas extraño si algo no cambia por que todo nuestro entorno esta lleno de cambios y solo uno de acustumbrarse
+ </p>
+ <h4> YO Ya CAi Al abismos estuve cercas de la muerte y en otra lo senti, cuando el cuerpo siente que se va algo despierta adentro. Yo ya toque fondo, ahora puedo ver el mundo sin mentiras. y ahora ¿QEue Voy a hacer ccon eso? por que los seres humanos ocupamos llegar al punto mas bajo para valorar todo. Aveces la historia mas cruda y mas real esta en frente de tus ojos</h4>
+ <p> TU pR0pIA VidAA </p>
+
+  </section>
+
+  <section id="muerte">
+    <h2>iNEviTTAblE mu#Rt3</h2>
+
+    <div class="entry">
+      <div class="entry-date">📆 JUNio0, 2024</div>
+      <p> No es que quiera irme, es que me costaba quedarme fue un mes duro la verdad a veces uno no entiende por que suceden cosas anormales, siempre buscando un "todo pasa por algo" pero en ese momento yo no podia comprender nada yo en ese momento me costaba estar presente, me sentia sola, que nadie entiendia mis sentimientos, que todos minimizaban mi dolor y se siente bien extraño recordar, recordar que no podia conmigo que yo no le encontraba salida a nada. Usualmente cuando fallece alguien es como algo lejano algo como 'te entereste que fallecio X persona' y cuando te sucede en primera persona cuando sabes la perdida que causa la persona a tus seres queridos gente que tu amas, se siente diferente pero mas aparte esto me paso cuando me encontraba mal cuando llevaba dias solo dias de haber terminado una relacion inestable, larga y seria para mi corta edad apenas podia con mis broncas de adolescente
+ 
+<h4>"Quizas la estoy pasando mal, quizas estoy evadiendo y quizas es necesario para darme cuenta que al final solo tu te entenderas y tu sola saldras adelante, quizas las personas a tu alrededor te dan un empujon para que tu avances y hay personas que te sujetan, que no te dejan avanzar. Supongo que es normal sentirme asi, solo quiero un abrazo... solo quiero un abrazo, que me digan que todo va estar bien." 
+una bella anotacion que hize el 17-jun-24 </h4>
+ 
+Antes me dolia aceptar que la relacion en la que estuve me daño, me tomo mucho tiempo entender muchas cosas, superar muchas cosas pero por mi yo del pasado a quien le falto mucho el respeto y lo siguio haciendo aunque ya no eramos pareja de mi parte pedro paramo gonzales hijo de tu che madre fuiste vacío, fuiste mentira disfrazada de promesa, fuiste esas palabras que saben dulces pero que envenenan. Me dejaste cicatrices que no verás porque tu ego no te deja. No fuiste tormenta, porque hasta la tormenta deja agua para que algo crezca.No te odio porque sería darte demasiado honor a alguien tan pequeño.  PeerO yo tambien chicos era una idiota que lo idealizaba  :3 </p>
+    </div>
+
+    <div class="entry">
+      <div class="entry-date">📆 Jul10o, 2024</div>
+      <p> A veces la muerte no se siente como un final, sino como un fantasma pegado a la espalda... Yo sentia que avanzaba, empeze a crear metas, ideas de nuevos hoobys, empece a conocer gente nueva, ya no me sentia tan sola y ami punto de vista estaba avanzando muy rapido para bien y yo no se si exista un destino en la vida, pero el guionista andaba bien fumado. Hace justo un año a finales de Julio yo estaba siendo la perra del imss, me encontraba hospitilizada con dolor en la panza ya me habia pasado el mes anterior solo que ahi dure un dia [mi mama penso que estaba embarazada 😆 ], esta vez por mi historial me pusieron mas atencion y sopalas que tenia un tumor ovarico del tamaño de una puta cabeza, estudios, ayuno, operacion de emergencia, bla bla trauma bla bla pero yo minimize mis emociones diciendo ""ay no soy la primera y la unica que operaron de un tumor"" pero como dije el guionista andaba bien fumado y le metio mucha negligencia medica despues de la operacion, ya yo aprendi cosas como de que despues de una operacion no es normal que salga sangre por la misma operacion, que haya sangre en la pipi, que haya mucho cansancio o que tenga fiebre. Y todas estas chingaderas les valio madres a los enfermeros por que hasta al dia siguiente mas de 12 horas con una hemorragia interna, me avisaron que mi hemoglobina andaba de la punta de la verga. Pero literalmente mi cuerpo fue fuerte no creo que haya otra explicacion cientifica por que perdi el 30%  de la sangre de mi cuerpo, pero bueno aparte de salir del hospital con una raja en la panza como si fuera cesarea, con amenia tipo 2 y un chingo de medicamento, aparte sali mas traumada, pero tambien con otra sentido de la vida, de ahi en adelante empece a valorar mi vida en verdad, pero tambien me sentia mal fisica como mental, volvi a caer, por que nunca nadie pregunto por mi estado, solo dos amistades fueron a visitarme [los amo], me la pasaba tomando medicamento, no podia correr, no podia gritar, no podia salir, no podia llorar, no podia reir y no por que hubiera un bloqueo emocional, sino, por que mi raja en la panza literalmente no me lo permitia, no podia cagar agusto ni comer, queria que alguien me abrazara y me dijera ""eres muy fuerte odette te amo"", sentia un vacio culerisimo pero NO QUERIA ADMITIRLO.</p>
+<h4>""La verdad es que no la paso bien nada esta bien, pero ya que llorar no es opcion, la unica opcion es salir adelante en si se que tengo amistades pero no quiero molestar a las personas con mis problemas ¿Que solucion va tener?. Hasta aqui simplemente estoy como un zombie o el incio de una nueva etapa este año veremos que pasa""
+1-AGOSTO-2024 otra anotacion culera.</h4>
+<p>Entonces con esta mentalidad de  "" NO HAY TIEMPO DE LLORAR LA VIDA ES PURA FELICIDAD UA UA 🌋, viva la vida"" aprendi que la vida es sentir, todas las emociones que se nos dieron, vivir cada momento con su respectiva emocion sentirlas sin reprimir nada llora, rie, enojate, siente miedo, siente verguenza, siente amor pero sientelo de manera intensa sin reprimir nada, dejalas fluir. No te arrepientas de sentir mucho es lo mas normal del mundo eso hace recordarte que eres un ser humano.
+Pero la bronca fue cuando reprimi y las consecuencias llegaron tiempo despues. De repente ya no podia sentir nada, ninguna emocion solo tristeza hacia de todo para volver a sentir pero tampoco podia lo que me da mas coraje de todo esto fue que yo me encontraba asi el dia de mi cumpleaños yo queria sentir algo era mi cumpleaños no mames y mas aparte iba ser el ultimo dia que estaria con mi tilina maria antes que se fuera del estado y CERO. Ninguna emocion y asi siguio hasta Abril pero no dare contexto solo los reales saben de la mamada que hize</p>
+
+<h5>Por suerte, las cosas no son tan malas hay personas que me rescataron que de cualquier forma siempre se quedaran en mi corazon </h5>
+ 
+    </div>
+  </section>
+
+  <section id="amistades">
+    <h2>VinculoOSs <3 </h2>
+    <p>Cada persona que coloque aqui, son personas que se dieron la opurtunidas de escucharme, de aconsejarme, quizas para ellos no fue nada pero en esos momentos bajos para mi lo fue todo, una calma que necesitaba.
+pero como sea estas personitas tienen nombre voy a empezar con la antiguedad o quizas no me vale verga 😛😛😛</p>
+    
+
+   
+<div class="vinculos-grid">
+  <!-- Tarjeta 1 -->
+  <div class="vinculo-card">
+    <h3>carlos sexo</h3>
+    <p>ni hablamos, pero gracias por haberme escuchado por haberme entendido hasta aconsejarme cuando estaba de la verga con mis ideas caoticas, eres la verga carlos siempre te voy a querer mucho por ese detalle hasta por haber sido mi sexy chambelan en mis quince anos.</p>
+<img src="fotocarlos.jpg">
+  </div>
+
+  <!-- Tarjeta 2 -->
+  <div class="vinculo-card">
+    <h3>mi bebe maria</h3>
+    <p>maria te amo con mi alma chiquita aunke seas bien jota me afecto mucho tu partida, contigo aprendi que no se ocupan años de conocer a alguien para conectar tan pronto, tambienn aprendi a no amar poquito eres una che intensa que ama todo y no lo reprime ija de la verga te quiero mucho grasias por haber expresado tu cariño hacia mi con cero filtros, tu compañia lo fue todo en su momento, espero con ansias el dia que nos volvamos a ver</p>
+<img src="fotomaria.jpg">  
+</div>
+
+  <!-- Tarjeta 3 -->
+  <div class="vinculo-card">
+    <h3>Pedro bueno</h3>
+    <p>Pedro bueno eres lo único rescatable de la secundaria tú y yo ya sabemos qué pedo, porque las cosas que hemos pasado, las pendejadas que hicimos que preferimos olvidar, pero siempre tendrás un espacio en mi corazón por haberme visitado cuando me rajaron la panza por haberte dado el tiempo mas q nada, te adoro un chingo puñetas gracias por prestarle 500 a mi mamá gracias por ser un gran compa</p>
+<img src="fotopedro.jpg">
+  </div> 
+ 
+<!-- Tarjeta 4 -->
+  <div class="vinculo-card">
+    <h3>4NTonIO</h3>
+    <p>Es complicado pinche p3rr4 malparida me dejó de hablar por su novia y ni motivos había, pero yo al put0  le agarré cariño por haber estado, pero mucha gente “estuvo”” este perro a diferencia me llegó a decir cosas que la neta me impactaron macizo. Antonio es una de las personas más interesantes que he conocido es curioso por que no sé mucho de él y que lo formó para tener la mentalidad que tiene, aunque a veces se le sube al put1lL0 sigue aquí presente yo lo quiero por haberme escuchado y entendido. </p>
+<img src="fotoantonio.jpg">
+  </div>
+
+<!-- Tarjeta 5 -->
+  <div class="vinculo-card">
+    <h3>RENATAAAAAAAAAAAA </h3>
+    <p>  Mi amistad mi hermana desde niñas siempre nos buscabamos neta tú y yo sabemos que una lo nuestro no es amistad es hermandad parece noviazgo AJjJAJAJAJA, hemos tenido altas y bajas meses dejarnos de hablar pero al final sabemos que estamos la una para la otra tú sabes que te amo a la roña hay tanta confianza que te limpiaría el fundillo si fuera necesario definitivamente una de las personas más impactantes en mi corta vida. Me ha enseñado mucho su simple presencia ya es parte de mi ADN</p>
+<img src="fotorenata.jpg">  
+</div>
+
+<!-- Tarjeta 6 -->
+  <div class="vinculo-card">
+    <h3>Mia no tuya </h3>
+    <p> TE quiero mucho la verdad eres una persona realmente hermosa [nada homosexual] eres una de las personas mas lindas que he conocido, mas singulares y especiales, me alegra tanto ser tu amiga, aprecio mucho tu amistad, fuiste una de las unicas personas que noto que estaba mal y mas aparte pregunto por mi estado no se por que eso me impacto mucho de la manera correcta por que recuerdo que me calmo</p>
+<img src="fotomia.jpg"> 
+ </div>
+
+<!-- Tarjeta 7 -->
+  <div class="vinculo-card">
+    <h3> ALEX1A </h3>
+    <p> También es una de las personas más interesantes con una personalidad muy interesante y más aparte es cabrona, es lista. Y aparte es una gran amiga la quiero mucho se ha vuelto muy especial para mi. Me agrada como es que es una persona llena de amor en la vida así la veo yo, que ama todo pero no del romance que te venden las películas sino del amor a la vida me encanta su frase de qué dice “tengo libre albedrío” a cualquier pendejada Gracias alexia por haberme escuchado y entendido.</p>
+<img src="fotoalexia.jpg">  
+</div>
+
+<!-- Tarjeta 8 -->
+  <div class="vinculo-card">
+    <h3> tItina </h3>
+    <p> Valentina estuvo cuando me sentía fatal muchas veces supe que podía desahogarme con ella a veces un chiste me animaba y me hacía el día otras veces llegó a decirme cosas en mis bajos momentos que lo fue todo para mí, te quiero mucho Valentina gracias por haber estado ahí y  por seguir existiendo a mi lado. Valentina me sacó una sonrisa en mis peores momentos ella estuvo desde el primer día de la prepa y jamás nos despegamos me enseñó a verle el lado bueno a las cosas.</p>
+ <img src="fotovalentina.jpg"> 
+ </div>
+
+<!-- Tarjeta 9 -->
+  <div class="vinculo-card">
+    <h3> JAKELINE </h3>
+    <p> Jacqueline me deja sin palabras la verdad es una  de esas personas que no solo se conocen, sino que se admiran, se aprenden y se llevan en el corazón.Que convierte cualquier momento en risa, y aun así tiene una fuerza emocional que me deja sin palabras. La neta admiro un chingo a jaki tambien le agradezco por no solo escucharme tambien aconsejarme de una manera wow. La quiero mucho a la lesbiana. Admiro su forma de ser. No solo la quiero, sino que agradezco haber coincidido con ella. </p>
+<img src="fotojaki.jpg">
+  </div>
+
+<!-- Tarjeta 10-->
+  <div class="vinculo-card">
+    <h3> CHILIllo  </h3>
+    <p> Gracias por siempre haberme cuidado, por habernos cuidado a mí a Renata, te meti en un pedo del que siempre te pediré disculpas pero a pesar de todo eres lo único que verdaderamente siento como una familia me siento afortunada de tenerte en mi vida espero que sepas que siempre estaré para ti porque a veces siento que tú sientes que no hay nadie para ti.</p>
+<img src="fotochilo.jpg">
+  </div>
+ 
+<!-- Tarjeta 11 -->
+  <div class="vinculo-card">
+    <h3> NEYDI 80  </h3>
+    <p> Neidy a veces es una perra a veces le digo que la quiero mucho y me manda por un tubo, pero yo la sigo queriendo es excelente escuchando no sé cómo explicarlo pero a ver si siento que estamos conectadas en las pláticas parecemos señoras en la plaza juzgando a los niños Me agrada un chingo la personalidad que tiene es simplemente neYDI .</p>
+<img src="fotoneydi.jpg">
+  </div>
+
+<!-- Tarjeta 12 -->
+  <div class="vinculo-card">
+    <h3> COFI :33333 </h3>
+    <p> Mi perro cofi este no es un ser humano pero no por eso tiene menos valor él no habla y tampoco abraza pero él muchas veces me vio llorando y solo se acercaba se ponía de una forma para que yo llorara con él. Otras veces hasta sentía que el absorbía todo lo malo habia veces que sólo estaba como zombie pero él me distraía, aunque sea un puñetas que a veces se escapa de la casa este ser vivo lo amo con cada partícula que me compone a mi.</p>
+<img src="fotocofi.jpg">  
+</div>
+
+<!-- Tarjeta 13 -->
+  <div class="vinculo-card">
+    <h3> WilLLLiam <3333 </h3>
+    <p> Se me hace curioso que fue una de las unicas que pregunto como lo habia pasado, llego en mi mejor momento en esta nueva etapa de mi vida. Como anillo al dedo, llego para hacerme SENtTTIR, conectar con alguien, sentir que puedo ser vulnerable y no me juzgara. Me encanta lo peculiar que es, lo libre que es y lo tranquilo que es. Su presencia llego a salvarme a sanar cosas que el no rompio estoy segura que no se ocupan años o decadas para comprender que hay personas con las que conectas muy rapido que te hacen sentir como si los conocieras por años. Hay algo en el que me calma el alma, como si el caos que traía adentro por fin hubiera encontrado un refugio, no hizo magia, simplemente es. Y en su presencia, mi dolor se hace pequeño, mis miedos se callan, y hasta mis heridas parecen recordar que pueden sanar. En sus abarazos y besos, no solo siento su piel; siento que la vida me está diciendo “tranquila, aquí está tu hogar”
+Te amo muchisimo william no solo porque eres tú, sino porque contigo puedo ser yo sin miedo, sin máscaras. Eres esa paz que nunca creí merecer y hoy solo quiero quedarme donde estás, porque contigo aprendí que el amor no duele, el amor sana, contigo he comprendido el amor biologico y no cultural, contigo entendí que el amor no es fuego que quema, sino luz que guía.Te miro, y siento que mi corazón se reconstruye con cada respiración que compartimos.
+Eres esa paz que no sabía que buscaba. Eres un regalo raro de la vida, de esos que nunca se piden, pero llegan justo a tiempo.
+ </p>
+<img src="fotowilliam.jpg">
+  </div>
+</section>
+
+  <footer>
+    Hecho por moondette :p
+  </footer>
+
+ <script>
+  const links = document.querySelectorAll('nav a');
+  const sections = document.querySelectorAll('section');
+
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const id = link.getAttribute('href').substring(1);
+
+      sections.forEach(section => section.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+
+      // Cambia el fondo según la sección activa
+      document.body.className = id;
+    });
+  });
+</script>
+<div class="comentarios-intro">
+  <h2 class="glitch-title" data-text=" SZo00nAA">SZo00nAA</h2>
+  <p>
+    Si llegaste hasta aquí, deja un fragmento de ti: una palabra, una idea, una huella.  
+    Este espacio es mio. Se amable   
+    No necesitas registro, solo tu nombre y lo que quieras compartir.
+  </p>
+</div>
+
+<section id="comentarios">
+  <h2>Comentarios</h2>
+  <div id="cusdis_thread"
+       data-host="https://cusdis.com"
+       data-app-id="c5af1757-93c8-4b62-8a1b-f5fdb78b7239"
+       data-page-id="comentarios"
+       data-page-url="http://localhost"
+       data-page-title="Comentarios Generales">
+  </div>
+</section>
+
+<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+
+</body>
+</html>
