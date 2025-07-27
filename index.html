@@ -227,7 +227,8 @@ iframe[src*="cusdis.com"] {
   margin-bottom: 10px;
   border: 2px solid #ff00ff;
   object-fit: cover; 
-
+}
+    /* Caja introductoria de comentarios */
 .comentarios-intro {
   max-width: 800px;
   margin: 40px auto 20px auto;
@@ -239,18 +240,7 @@ iframe[src*="cusdis.com"] {
   box-shadow: 0 0 10px #00ffff66;
 }
 
-.comentarios-intro h2 {
-  color: #ff00ff;
-  font-family: 'Courier New', monospace;
-  text-shadow: 0 0 6px #00ffff;
-  margin-bottom: 10px;
-}
-
-.comentarios-intro p {
-  color: #ccc;
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
+/* Título glitch */
 .glitch-title {
   position: relative;
   display: inline-block;
@@ -260,7 +250,6 @@ iframe[src*="cusdis.com"] {
   text-shadow: 0 0 5px #00ffff;
   cursor: default;
 }
-
 .glitch-title::before,
 .glitch-title::after {
   content: attr(data-text);
@@ -273,31 +262,39 @@ iframe[src*="cusdis.com"] {
   background: transparent;
   clip: rect(0, 0, 0, 0);
 }
-
 .glitch-title:hover::before {
   animation: glitch 0.8s infinite linear alternate-reverse;
 }
-
 .glitch-title:hover::after {
   animation: glitch 0.8s infinite linear alternate-reverse;
   color: #00ffff;
 }
-
 @keyframes glitch {
   0% { clip: rect(0, 9999px, 0, 0); transform: skew(0.5deg); }
-  5% { clip: rect(0, 9999px, 0, 0); transform: skew(0.5deg); }
   10% { clip: rect(5px, 9999px, 15px, 0); transform: skew(-0.5deg); }
-  15% { clip: rect(0, 9999px, 0, 0); transform: skew(0.5deg); }
-  20% { clip: rect(10px, 9999px, 20px, 0); transform: skew(-0.5deg); }
-  25% { clip: rect(0, 9999px, 0, 0); transform: skew(0.5deg); }
+  20% { clip: rect(10px, 9999px, 20px, 0); transform: skew(0.5deg); }
   30% { clip: rect(15px, 9999px, 25px, 0); transform: skew(-0.5deg); }
-  35% { clip: rect(0, 9999px, 0, 0); transform: skew(0.5deg); }
-  40% { clip: rect(20px, 9999px, 30px, 0); transform: skew(-0.5deg); }
+  40% { clip: rect(20px, 9999px, 30px, 0); transform: skew(0.5deg); }
   100% { clip: rect(0, 9999px, 0, 0); transform: skew(0.5deg); }
 }
 
+/* Caja de Cusdis (iframe) */
+#comentarios iframe {
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ff00ff88;
+  margin-top: 10px;
+}
+.glitch-anim {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  filter: drop-shadow(0 0 5px #ff00ff);
+}
 
-
+.glitch-anim.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
   </style>
 </head>
 <body>
@@ -544,30 +541,35 @@ Eres esa paz que no sabía que buscaba. Eres un regalo raro de la vida, de esos 
     No necesitas registro, solo tu nombre y lo que quieras compartir.
   </p>
 </div>
+<div class="comentarios-intro">
+  <h2 class="glitch-title" data-text="SZo00nAA">SZo00nAA</h2>
+  <p>
+    Si llegaste hasta aquí, deja un fragmento de ti: una palabra, una idea, una huella.  
+    Este espacio es mío. Sé amable.   
+    No necesitas registro, solo tu nombre y lo que quieras compartir.
+  </p>
+</div>
 
-<section id="comentarios">
+<section id="comentarios" class="glitch-anim">
   <h2>Comentarios</h2>
-  <div id="cusdis_thread"
-       data-host="https://cusdis.com"
-       data-app-id="c5af1757-93c8-4b62-8a1b-f5fdb78b7239"
-       data-page-id="comentarios"
-       data-page-url="https://moondette.github.io/noseqmierd/"
-       data-page-title="Comentarios Generales">
-  </div>
+  <iframe 
+      src="https://cusdis.com/widget/comments.html?host=https://cusdis.com
+      &id=comentarios
+      &app_id=c5af1757-93c8-4b62-8a1b-f5fdb78b7239
+      &url=https://moondette.github.io/noseqmierd/"
+      style="width:100%; min-height:400px; border:none; background-color: #111;">
+  </iframe>
 </section>
-
-<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-
-
-
-
-
-
-
-
-
-  
-  
+<script>
+  document.addEventListener('scroll', function() {
+    const section = document.querySelector('.glitch-anim');
+    const sectionTop = section.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    if (sectionTop < windowHeight - 100) {
+      section.classList.add('visible');
+    }
+  });
+</script>
 
 </body>
 </html>
