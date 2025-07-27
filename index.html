@@ -552,14 +552,21 @@ Eres esa paz que no sabía que buscaba. Eres un regalo raro de la vida, de esos 
 
 <section id="comentarios" class="glitch-anim">
   <h2>Comentarios</h2>
-  <iframe 
-      src="https://cusdis.com/widget/comments.html?host=https://cusdis.com
-      &id=comentarios
-      &app_id=c5af1757-93c8-4b62-8a1b-f5fdb78b7239
-      &url=https://moondette.github.io/noseqmierd/"
-      style="width:100%; min-height:400px; border:none; background-color: #111;">
-  </iframe>
+ <form id="comment-form" action="https://api.staticman.net/v2/entry/<TU_GITHUB>/<TU_REPO>/main/comments" method="POST">
+    <label for="name">Nombre:</label>
+    <input type="text" name="fields[name]" id="name" required>
+
+    <label for="message">Comentario:</label>
+    <textarea name="fields[message]" id="message" required></textarea>
+
+    <button type="submit">Enviar comentario</button>
+  </form>
+
+  <div id="comments-list">
+    <!-- Aquí aparecerán los comentarios -->
+  </div>
 </section>
+
 <script>
   document.addEventListener('scroll', function() {
     const section = document.querySelector('.glitch-anim');
