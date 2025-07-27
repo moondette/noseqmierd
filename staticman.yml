@@ -1,0 +1,10 @@
+comments:
+  allowedFields: ["name", "message"]
+  branch: "main"
+  commitMessage: "Nuevo comentario de {fields.name}"
+  filename: "comment-{date}"
+  path: "comments"
+  format: "yaml"
+  moderation: false
+  name: "Comentarios"
+  requiredFields: ["name", "message"]
