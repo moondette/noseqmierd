@@ -524,47 +524,25 @@ Eres esa paz que no sabía que buscaba. Eres un regalo raro de la vida, de esos 
   });
 </script>
 
-<section id="comentarios" class="glitch-anim">
-  <h2>Comentarios</h2>
- <form id="comment-form" action="https://api.staticman.net/v2/entry/moondette/noseqmierd/main/comments" method="POST">
-    <label for="name">Nombre:</label>
-    <input type="text" name="fields[name]" id="name" required>
-
-    <label for="message">Comentario:</label>
-    <textarea name="fields[message]" id="message" required></textarea>
-
-    <button type="submit">Enviar comentario</button>
-  </form>
-
-  <div id="comments-list">
-    <!-- Aquí aparecerán los comentarios -->
+<!-- Comentarios -->
+  <div class="comentarios-intro">
+    <h2 class="glitch-title" data-text="SZo00nAA">SZo00nAA</h2>
+    <p>
+      Si llegaste hasta aquí, deja un fragmento de ti: una palabra, una idea, una huella.  
+      Este espacio es mío. Sé amable.  
+    </p>
   </div>
-</section>
 
-<script>
-  document.addEventListener('scroll', function() {
-    const section = document.querySelector('.glitch-anim');
-    const sectionTop = section.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
-    if (sectionTop < windowHeight - 100) {
-      section.classList.add('visible');
-    }
-  });
-</script>
-<script>
-  async function cargarComentarios() {
-    const lista = document.getElementById("comments-list");
-    try {
-      const response = await fetch("https://moondette.github.io/noseqmierd/comments/");
-      if (!response.ok) throw new Error("No se pudieron cargar los comentarios");
-      const html = await response.text();
-      lista.innerHTML = html;
-    } catch (err) {
-      lista.innerHTML = "<p>No hay comentarios aún.</p>";
-    }
-  }
-  cargarComentarios();
-</script>
+  <section id="comentarios">
+    <h2>Comentarios</h2>
+    <script src="https://utteranc.es/client.js"
+            repo="moondette/noseqmierd"
+            issue-term="pathname"
+            theme="github-dark"
+            crossorigin="anonymous"
+            async>
+    </script>
+  </section>
 
 </body>
 </html>
