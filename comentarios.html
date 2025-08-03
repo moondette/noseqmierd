@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comentarios</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0a0a0a;
+      color: #f5f5f5;
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .floating-box {
+      background: rgba(20, 20, 20, 0.9);
+      border: 1px solid #444;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+      width: 90%;
+      max-width: 800px;
+      animation: floatIn 1s ease-out;
+    }
+
+    @keyframes floatIn {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    h1 {
+      font-size: 2rem;
+      text-align: center;
+      color: #ccc;
+    }
+
+    .volver {
+      margin-top: 20px;
+      display: inline-block;
+      text-decoration: none;
+      color: #fff;
+      background: #222;
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: 1px solid #555;
+      transition: 0.3s;
+    }
+
+    .volver:hover {
+      background: #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-box">
+    <h1>SZo00nAA</h1>
+    <p style="text-align:center; font-size: 14px; color: #999;">Puedes dejar tu huella aquí abajo. Tu comentario será visible para todos.</p>
+
+    <!-- COMENTARIOS: USA UTTERANCES -->
+    <script src="https://utteranc.es/client.js"
+        repo="moondette/noseqmierd"
+        issue-term="pathname"
+        label="💬 comentario"
+        theme="photon-dark"
+        crossorigin="anonymous"
+        async>
+    </script>
+  </div>
+
+  <a class="volver" href="index.html">Volver al inicio</a>
+</body>
+</html>
