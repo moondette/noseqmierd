@@ -988,7 +988,142 @@ Eres esa paz que no sabía que buscaba. Eres un regalo raro de la vida, de esos 
   <img src="fotowilliam3.jpg">
 </div>
   </div>
+
+<!-- =====================================================
+     ARCHIVO DE RECUERDOS
+     ===================================================== -->
+
+<section class="recuerdos-section">
+
+  <div class="recuerdos-title">
+    ARCHIVO
+  </div>
+
+  <div class="recuerdos-subtitle">
+    recuerdos que no quise guardar en otra parte
+  </div>
+
+  <!-- FRASE GENERAL -->
+  <div class="frase-recuerdos">
+    “mi vida también está hecha de ustedes.”
+  </div>
+
+  <div class="recuerdos-wall">
+
+    <!-- FOTO 1 -->
+    <div class="recuerdo foto-1">
+      <img src="foto1.jpg" alt="recuerdo 1">
+      <span class="fecha-recuerdo">08.16.24</span>
+    </div>
+
+    <!-- FOTO 2 -->
+    <div class="recuerdo foto-2">
+      <img src="foto2.jpg" alt="recuerdo 2">
+      <span class="fecha-recuerdo">09.02.24</span>
+    </div>
+
+    <!-- FOTO 3 -->
+    <div class="recuerdo foto-3">
+      <img src="foto3.jpg" alt="recuerdo 3">
+      <span class="fecha-recuerdo">10.11.24</span>
+    </div>
+
+    <!-- FOTO 4 -->
+    <div class="recuerdo foto-4">
+      <img src="foto4.jpg" alt="recuerdo 4">
+      <span class="fecha-recuerdo">11.22.24</span>
+    </div>
+
+    <!-- FOTO GRANDE -->
+    <div class="recuerdo grande-1">
+      <img src="foto5.jpg" alt="recuerdo 5">
+      <span class="fecha-recuerdo">12.04.24</span>
+    </div>
+
+    <!-- FOTO GRANDE -->
+    <div class="recuerdo grande-2">
+      <img src="foto6.jpg" alt="recuerdo 6">
+      <span class="fecha-recuerdo">12.25.24</span>
+    </div>
+
+    <!-- VIDEO 1 -->
+    <div class="recuerdo video-1 digital">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="video1.mp4" type="video/mp4">
+      </video>
+      <span class="fecha-recuerdo">VID_001</span>
+    </div>
+
+    <!-- VIDEO 2 -->
+    <div class="recuerdo video-2 digital">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="video2.mp4" type="video/mp4">
+      </video>
+      <span class="fecha-recuerdo">VID_002</span>
+    </div>
+
+    <!-- VIDEO 3 -->
+    <div class="recuerdo video-3 digital">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="video3.mp4" type="video/mp4">
+      </video>
+      <span class="fecha-recuerdo">VID_003</span>
+    </div>
+
+    <!-- VIDEO 4 -->
+    <div class="recuerdo video-4 digital">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="video4.mp4" type="video/mp4">
+      </video>
+      <span class="fecha-recuerdo">VID_004</span>
+    </div>
+
+    <!-- FOTO 7 -->
+    <div class="recuerdo foto-5">
+      <img src="foto7.jpg" alt="recuerdo 7">
+      <span class="fecha-recuerdo">01.03.25</span>
+    </div>
+
+    <!-- FOTO 8 -->
+    <div class="recuerdo foto-6">
+      <img src="foto8.jpg" alt="recuerdo 8">
+      <span class="fecha-recuerdo">02.17.25</span>
+    </div>
+
+    <!-- FOTO 9 -->
+    <div class="recuerdo foto-7">
+      <img src="foto9.jpg" alt="recuerdo 9">
+      <span class="fecha-recuerdo">03.08.25</span>
+    </div>
+
+    <!-- VIDEO 5 -->
+    <div class="recuerdo video-5 digital">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="video5.mp4" type="video/mp4">
+      </video>
+      <span class="fecha-recuerdo">VID_005</span>
+    </div>
+
+    <!-- VIDEO 6 -->
+    <div class="recuerdo video-6 digital">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="video6.mp4" type="video/mp4">
+      </video>
+      <span class="fecha-recuerdo">VID_006</span>
+    </div>
+
+    <!-- VIDEO 7 -->
+    <div class="recuerdo video-7 digital">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="video7.mp4" type="video/mp4">
+      </video>
+      <span class="fecha-recuerdo">VID_007</span>
+    </div>
+
+  </div>
+
 </section>
+   
 
   <footer>
     Hecho por moondette :p
@@ -1010,6 +1145,38 @@ Eres esa paz que no sabía que buscaba. Eres un regalo raro de la vida, de esos 
       document.body.className = id;
     });
   });
+/* =====================================================
+   RECUERDOS: APARECEN AL HACER SCROLL
+   ===================================================== */
+
+const recuerdos = document.querySelectorAll('.recuerdo');
+
+const observerRecuerdos = new IntersectionObserver(
+  (entradas) => {
+
+    entradas.forEach((entrada, index) => {
+
+      if (entrada.isIntersecting) {
+
+        setTimeout(() => {
+          entrada.target.classList.add('visible');
+        }, index * 120);
+
+        observerRecuerdos.unobserve(entrada.target);
+      }
+
+    });
+
+  },
+  {
+    threshold: 0.15
+  }
+);
+
+recuerdos.forEach((recuerdo) => {
+  observerRecuerdos.observe(recuerdo);
+});
+   
 </script>
 
 <!-- Comentarios -->
