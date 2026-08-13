@@ -307,7 +307,7 @@ body.amistades {
   display: block;
   position: relative;
   width: 94%;
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 180px auto 120px;
   padding: 80px 25px 140px;
   overflow: hidden;
@@ -330,7 +330,7 @@ body.amistades {
   text-align: center;
   color: #00ffcc;
   font-size: 0.9rem;
-  margin-bottom: 110px;
+  margin-bottom: 130px;
   letter-spacing: 2px;
 }
 
@@ -344,8 +344,8 @@ body.amistades {
   z-index: 50;
 
   width: 90%;
-  max-width: 850px;
-  margin: 0 auto 120px;
+  max-width: 900px;
+  margin: 0 auto 150px;
 
   text-align: center;
 
@@ -354,14 +354,12 @@ body.amistades {
   font-size: clamp(2rem, 5vw, 4.5rem);
   line-height: 1.05;
 
-  color: #fff;
+  color: white;
   text-shadow:
     0 0 8px rgba(255,0,255,.7),
     2px 2px #000;
 
   pointer-events: none;
-
-  mix-blend-mode: screen;
 }
 
 /* =========================================================
@@ -369,15 +367,16 @@ body.amistades {
    ========================================================= */
 
 .recuerdos-wall {
-  position: relative;
-  min-height: 3200px;
+   width: 100%;
 
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: 70px;
+  display: flex;
+  flex-wrap: wrap;
 
-  gap: 35px;
-  padding: 50px 10px;
+  align-items: flex-start;
+  justify-content: center;
+   gap: 90px 55px;
+
+  padding: 40px 20px 120px;
 }
 
 /* =========================================================
@@ -385,27 +384,32 @@ body.amistades {
    ========================================================= */
 
 .recuerdo {
-  position: relative;
+   position: relative;
+
+  width: auto;
+  height: auto;
 
   opacity: 0;
-  transform:
-    translateY(90px)
-    rotate(-4deg)
-    scale(.92);
 
+  transform:
+    translateY(100px)
+    rotate(-4deg)
+    scale(.94);
+ 
   transition:
     opacity 1.2s ease,
     transform 1.2s cubic-bezier(.22,.61,.36,1);
 
   z-index: 2;
-}
 
+  flex: 0 0 auto;
+}
 /* Cuando entra en pantalla */
 .recuerdo.visible {
   opacity: 1;
   transform:
     translateY(0)
-    rotate(var(--rotacion))
+    rotate(var(--rotacion, 0deg))
     scale(1);
 }
 
@@ -415,12 +419,15 @@ body.amistades {
 
 .recuerdo img,
 .recuerdo video {
+ 
   display: block;
 
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: auto;
 
-  object-fit: cover;
+    max-width: 100%;
+
+  object-fit: contain;
 
   border: 5px solid #f4f0e6;
 
@@ -493,7 +500,7 @@ body.amistades {
   width: 70px;
   height: 22px;
 
-  background: rgba(245,230,170,.72);
+  background: rgba(245,230,170,.78);
 
   top: -12px;
   left: 50%;
@@ -506,18 +513,16 @@ body.amistades {
 
   box-shadow:
     0 2px 3px rgba(0,0,0,.3);
-
-  opacity: .9;
 }
+    .recuerdo:nth-child(3n)::before {
 
-/* Algunas cintas inclinadas */
-.recuerdo:nth-child(3n)::before {
   transform:
     translateX(-50%)
-    rotate(5deg);
+    rotate(6deg);
 }
 
 .recuerdo:nth-child(5n)::before {
+
   transform:
     translateX(-50%)
     rotate(-8deg);
@@ -530,13 +535,13 @@ body.amistades {
 .fecha-recuerdo {
   position: absolute;
 
-  left: 8px;
-  bottom: 8px;
+  left: 10px;
+  bottom: 10px;
 
-  background: rgba(0,0,0,.75);
+  background: rgba(0,0,0,.78);
   color: white;
 
-  padding: 3px 7px;
+  padding: 4px 8px;
 
   font-family: 'Courier New', monospace;
   font-size: .65rem;
@@ -554,8 +559,8 @@ body.amistades {
   content: "REC ●";
   position: absolute;
 
-  top: 8px;
-  right: 8px;
+  top: 10px;
+  right: 10px;
 
   color: red;
 
@@ -684,7 +689,9 @@ body.amistades {
 /* =========================================================
    PEQUEÑOS EFECTOS DE FOTOS
    ========================================================= */
-
+.recuerdo:nth-child(1) {
+  --rotacion: -4deg;
+}
 .recuerdo:nth-child(2) {
   --rotacion: 3deg;
 }
@@ -708,7 +715,24 @@ body.amistades {
 .recuerdo:nth-child(7) {
   --rotacion: -3deg;
 }
+.recuerdo:nth-child(8) {
+  --rotacion: 4deg;
+}
 
+.recuerdo:nth-child(9) {
+  --rotacion: -2deg;
+}
+
+.recuerdo:nth-child(10) {
+  --rotacion: 3deg;
+}
+    .recuerdo:nth-child(11) {
+  --rotacion: -4deg;
+}
+
+.recuerdo:nth-child(12) {
+  --rotacion: 3deg;
+}
 /* =========================================================
    RESPONSIVE — CELULAR
    ========================================================= */
@@ -717,43 +741,52 @@ body.amistades {
 
   .recuerdos-section {
     width: 100%;
-    padding-left: 10px;
-    padding-right: 10px;
+     padding:
+      60px 10px 100px;
   }
 
   .recuerdos-wall {
     display: flex;
     flex-direction: column;
-    gap: 80px;
+    gap: 90px;
     min-height: auto;
+    align-items: center;
+  }
+  .recuerdo {
+
+    width: auto;
+    max-width: 94%;
+  }
+   .recuerdo img {
+
+     width: min(520px, 90vw);
+  height: auto;
+}
+
+ .recuerdo.grande-1 img,
+  .recuerdo.grande-2 img,
+  .recuerdo.grande-11 img,
+  .recuerdo.grande-12 img {
+
+    width: auto;
+    max-width: 90vw;
   }
 
-  .recuerdo,
-  .recuerdo.foto-1,
-  .recuerdo.foto-2,
-  .recuerdo.foto-3,
-  .recuerdo.foto-4,
-  .recuerdo.foto-5,
-  .recuerdo.foto-6,
-  .recuerdo.foto-7,
-  .recuerdo.grande-1,
-  .recuerdo.grande-2,
-  .recuerdo.video-1,
-  .recuerdo.video-2,
-  .recuerdo.video-3,
-  .recuerdo.video-4,
-  .recuerdo.video-5,
-  .recuerdo.video-6,
-  .recuerdo.video-7 {
-    width: 88%;
-    height: 260px;
-    margin: 0 auto;
+  .recuerdo.video-1 video,
+  .recuerdo.video-2 video,
+  .recuerdo.video-3 video,
+  .recuerdo.video-4 video,
+  .recuerdo.video-5 video,
+   .recuerdo.video-6 video,
+  .recuerdo.video-7 video {
+
+    width: 90vw;
   }
 
   .frase-recuerdos {
     position: relative;
     top: auto;
-    margin-bottom: 80px;
+    margin-bottom: 90px;
   }
 
 }
@@ -1084,7 +1117,7 @@ Eres esa paz que no sabía que buscaba. Eres un regalo raro de la vida, de esos 
       <video autoplay muted loop playsinline preload="metadata">
         <source src="video1.mp4" type="video/mp4">
       </video>
-      <span class="dia q toco xgrave">VID_001</span>
+      <span class="fecha-recuerdo">dia q toco xgrave</span>
     </div>
 
     <!-- VIDEO 2 -->
@@ -1092,7 +1125,7 @@ Eres esa paz que no sabía que buscaba. Eres un regalo raro de la vida, de esos 
       <video autoplay muted loop playsinline preload="metadata">
         <source src="video2.mp4" type="video/mp4">
       </video>
-      <span class="mi cumpleaños 17 :3">VID_002</span>
+      <span class="fecha-recuerdo">mi cumpleaños 17 :3</span>
     </div>
 
     <!-- VIDEO 3 -->
@@ -1100,7 +1133,7 @@ Eres esa paz que no sabía que buscaba. Eres un regalo raro de la vida, de esos 
       <video autoplay muted loop playsinline preload="metadata">
         <source src="video3.mp4" type="video/mp4">
       </video>
-      <span class="TOKKKKIn DE abril">VID_003</span>
+      <span class="fecha-recuerdo">TOKKKKIn DE abril</span>
     </div>
 
     <!-- VIDEO 4 -->
@@ -1108,7 +1141,7 @@ Eres esa paz que no sabía que buscaba. Eres un regalo raro de la vida, de esos 
       <video autoplay muted loop playsinline preload="metadata">
         <source src="video4.mp4" type="video/mp4">
       </video>
-      <span class="fOtito cON la familia uWu">VID_004</span>
+      <span class="fecha-recuerdo">fOtito cON la familia uWu</span>
     </div>
 
   <!-- FOTO 1 -->
@@ -1152,7 +1185,7 @@ Eres esa paz que no sabía que buscaba. Eres un regalo raro de la vida, de esos 
       <video autoplay muted loop playsinline preload="metadata">
         <source src="video5.mp4" type="video/mp4">
       </video>
-      <span class="La puticueva">VID_005</span>
+      <span class="fecha-recuerdo">La puticueva</span>
     </div>
 
     <!-- VIDEO 6 -->
@@ -1160,7 +1193,7 @@ Eres esa paz que no sabía que buscaba. Eres un regalo raro de la vida, de esos 
       <video autoplay muted loop playsinline preload="metadata">
         <source src="video6.mp4" type="video/mp4">
       </video>
-      <span class=" :333333 ">VID_006</span>
+      <span class="fecha-recuerdo">:333333 </span>
     </div>
 
     <!-- VIDEO 7 -->
@@ -1168,7 +1201,7 @@ Eres esa paz que no sabía que buscaba. Eres un regalo raro de la vida, de esos 
       <video autoplay muted loop playsinline preload="metadata">
         <source src="video7.mp4" type="video/mp4">
       </video>
-      <span class=" dejandO marca en la puticueva">VID_007</span>
+      <span class="fecha-recuerdo">dejandO marca en la puticueva</span>
     </div>
 
 </section>
