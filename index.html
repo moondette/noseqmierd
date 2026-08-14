@@ -1158,8 +1158,25 @@ Eres esa paz que no sabía que buscaba. Eres un regalo raro de la vida, de esos 
 
       // Cambia el fondo según la sección activa
       document.body.className = id;
-    });
+     /* ================================
+       CAMBIO DE MÚSICA POR SECCIÓN
+       ================================ */
+
+    if (id === 'amistades') {
+
+      music.src = 'vinculos.mp3';
+      music.load();
+
+    } else {
+
+      music.src = 'Pure.mp3';
+      music.load();
+
+    }
+
+    music.play().catch(() => {});
   });
+});
 /* =====================================================
    RECUERDOS: APARECEN AL HACER SCROLL
    ===================================================== */
